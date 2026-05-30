@@ -1,0 +1,20 @@
+services:
+  v6relay:
+    image: iahim/v6relay:latest
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    volumes:
+      - /lib/modules:/lib/modules:ro
+    environment:
+      TUNNEL_SERVER_IPV4: "YOUR_TUNNEL_SERVER_IPV4"
+      TUNNEL_CLIENT_IPV4: "YOUR_TUNNEL_CLIENT_IPV4"
+      TUNNEL_SERVER_IPV6: "YOUR_TUNNEL_SERVER_IPV6"
+      TUNNEL_CLIENT_IPV6: "YOUR_TUNNEL_CLIENT_IPV6"
+      TUNNEL_ROUTED_NET: "YOUR_TUNNEL_ROUTED_NET"
+      TUNNEL_IPV6_DNS: "YOUR_TUNNEL_IPV6_DNS"
+      PROXY_PORT: "1080"
+      # When false, IPv4-only destinations are rejected (IPv6-only mode)
+      PROXY_IPV4_ENABLED: "false"
+    restart: unless-stopped
